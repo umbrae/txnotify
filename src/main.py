@@ -88,7 +88,7 @@ if len(body) > 0:
 
     msg = MIMEText(body)
     msg['Subject'] = subject
-    msg['From'] = settings.MAILGUN_API_EMAIL
+    msg['From'] = settings.MAILGUN_FROM_EMAIL
     msg['To'] = settings.EMAIL_TO
     
     smtp = SMTP("smtp.mailgun.org", 587)
