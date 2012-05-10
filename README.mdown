@@ -5,14 +5,29 @@ TxNotify is a simple python script that calls your bank using the same API as
 Quicken or Quickbooks and sends you an email with the transactions that have
 happened since the last time it checked.
 
-It's meant to be used under some time-based context, like cron. It's very much
-hacky-script level territory.
+Backstory
+---------
+I used to use [ING Direct](http://www.ingdirect.com) heavily for banking. One of my favorite things about it was that I'd get an email notification on every transaction. It was noisy as hell, but I had great, passive insight into where my money was going.
+
+When I switched banks to a more traditional bank that didn't provide email notifications, I immediately felt the loss of not having a hold on where my money was going. So I wrote this script to do the job for me.
+
+Installation
+------------
+TxNotify has no dependencies outside of the standard library. To use, you'll need to:
+
+ 1. Clone the code.
+ 2. Copy the `settings.template.py` file to `settings.py` in `src`.
+ 3. Fill out the settings file, including all of your banking information. Please heed the numerous warnings within.
+    - You'll need to pull a lot of esoteric information about how to connect to your bank. [GNUCash has a great resource for those settings](http://wiki.gnucash.org/wiki/OFX_Direct_Connect_Bank_Settings). I can't promise it will work for you, however.
+ 4. Run it once, and see if it works.
+ 5. If it does, you'll want to set up a cron script to run this regularly from a machine that is always or near-always on. I have it set to run every 30 minutes.
+
 
 Thanks
 ------
 
-TxNotify makes use of:
+TxNotify graciously makes use of:
 
- * fixofx - a python library to canonicalize the various formats used for financial data streams.
+ * [fixofx](https://github.com/wesabe/fixofx) - a python library to canonicalize the various formats used for financial data streams. From the now-defunct wesabe.
  * [MailGun](http://www.mailgun.net) - for easily sending emails
 

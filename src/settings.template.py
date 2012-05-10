@@ -29,10 +29,13 @@ ACCOUNT_TYPE = "CHECKING" # Either CHECKING or SAVINGS
 ACCOUNT_USERNAME = "" # The username at your bank for online banking
 ACCOUNT_PASSWORD = "" # The password at your bank for online banking
 
-# Sign up for a free mailgun account at mailgun.net
-MAILGUN_SMTP_USERNAME = ''
-MAILGUN_SMTP_PASSWORD = ''
-MAILGUN_FROM_EMAIL = ''
+# You can sign up for a free mailgun account at mailgun.net to use here, or
+# use some other SMTP host you're already familiar with.
+SMTP_HOST = 'smtp.mailgun.org'
+SMTP_PORT = 587
+SMTP_USERNAME = ''
+SMTP_PASSWORD = ''
+FROM_EMAIL = ''
 
 # Where you want the transaction notifications to be sent
 EMAIL_TO = ''

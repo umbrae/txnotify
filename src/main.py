@@ -45,12 +45,12 @@ def send_email(body, subject):
 
         msg = MIMEText(body)
         msg['Subject'] = subject
-        msg['From'] = settings.MAILGUN_API_EMAIL
+        msg['From'] = settings.FROM_EMAIL
         msg['To'] = settings.EMAIL_TO
 
-        smtp = SMTP("smtp.mailgun.org", 587)
-        smtp.login(settings.MAILGUN_SMTP_USERNAME, settings.MAILGUN_SMTP_PASSWORD)
-        smtp.sendmail(settings.MAILGUN_API_EMAIL,
+        smtp = SMTP(settings.SMTP_HOST, settings.SMTP_PORT)
+        smtp.login(settings.SMTP_USERNAME, settings.SMTP_PASSWORD)
+        smtp.sendmail(settings.FROM_EMAIL,
                       [settings.EMAIL_TO],
                       msg.as_string())
     else:
