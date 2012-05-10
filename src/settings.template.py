@@ -16,7 +16,7 @@ OFX_SETTINGS = {
     "code": ""
 }
 
-ACCOUNT_NAME = "Bank"     # Change this to a unique label for your emails.
+ACCOUNT_NAME = "Bank"     # You can change this to a nice label for emails.
 ACCOUNT_NUMBER = ""       # The account number at your bank
 ACCOUNT_TYPE = "CHECKING" # Either CHECKING or SAVINGS
 

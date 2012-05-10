@@ -94,7 +94,7 @@ def send_email(subject, body):
                       [settings.EMAIL_TO],
                       msg.as_string())
     else:
-        dbg("Body was empty, no records must have been found. Not emailing.")
+        dbg("Body was empty, no valid, new records found. Not emailing.")
 
 def main():
     # Set up our OFX client
