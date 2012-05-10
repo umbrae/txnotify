@@ -1,0 +1,18 @@
+TxNotify - Email Notifications for your Bank Transactions
+=========================================================
+
+TxNotify is a simple python script that calls your bank using the same API as
+Quicken or Quickbooks and sends you an email with the transactions that have
+happened since the last time it checked.
+
+It's meant to be used under some time-based context, like cron. It's very much
+hacky-script level territory.
+
+Thanks
+------
+
+TxNotify makes use of:
+
+ * fixofx - a python library to canonicalize the various formats used for financial data streams.
+ * [MailGun](http://www.mailgun.net) - for easily sending emails
+
