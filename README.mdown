@@ -22,6 +22,18 @@ TxNotify has no dependencies outside of the standard library. To use, you'll nee
  4. Run it once, and see if it works.
  5. If it does, you'll want to set up a cron script to run this regularly from a machine that is always or near-always on. I have it set to run every 30 minutes.
 
+What it Looks Like
+------------------
+
+Every time the script detects new transactions, it'll send you an email of the format:
+```
+Subject: [2012-05-10 09:00AM] New Bank Transactions
+
+[2012-05-09] 469216     NETFLIX COM           -7.99
+[2012-05-09] DEPOSIT                          1000.00
+[2012-05-09] 441289     VALVE SOFTWARE        -19.99
+[2012-05-09] 440213     WNYC                  -160.00
+```
 
 Thanks
 ------
