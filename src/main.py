@@ -31,7 +31,10 @@ def parse_line_item(line_item):
 
     """
     date_posted_str = line_item.get('DTPOSTED', '')
-    date_posted = datetime.strptime(date_posted_str, "%Y%m%d%H%M%S.000")
+    try:
+       date_posted = datetime.strptime(date_posted_str, "%Y%m%d%H%M%S.000")
+    except ValueError:
+       date_posted = datetime.strptime(date_posted_str, "%Y%m%d%H%M%S")
     return {
         "name": line_item.get('NAME'),
         "date_posted": date_posted,
@@ -115,7 +118,10 @@ def main():
     # This ugly bit of navigation gets us the list of the transactions that
     # have occured in this statement.
     statement_dict = response.get_statements()[0].as_dict()
-    line_items = statement_dict['STMTRS']['BANKTRANLIST']
+    try:
+        line_items = statement_dict['STMTRS']['BANKTRANLIST']
+    except KeyError:
+        line_items = statement_dict['CCSTMTRS']['BANKTRANLIST']
 
     email_body = generate_email_body(line_items)
 
