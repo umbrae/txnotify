@@ -90,6 +90,9 @@ def send_email(subject, body):
         msg['Subject'] = subject
         msg['From'] = settings.FROM_EMAIL
         msg['To'] = settings.EMAIL_TO
+        if settings.EMAIL_CC is not None:
+            msg['Cc'] = ', '.join(settings.EMAIL_CC)
+
 
         smtp = SMTP(settings.SMTP_HOST, settings.SMTP_PORT)
         smtp.login(settings.SMTP_USERNAME, settings.SMTP_PASSWORD)

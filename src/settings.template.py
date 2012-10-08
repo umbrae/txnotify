@@ -39,3 +39,4 @@ FROM_EMAIL = ''
 
 # Where you want the transaction notifications to be sent
 EMAIL_TO = ''
+EMAIL_CC = None
