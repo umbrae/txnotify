@@ -61,6 +61,10 @@ def generate_email_body(line_items):
         line_item_dict = line_item.asDict()
         if line_item_dict.has_key('NAME'):
             item = parse_line_item(line_item_dict)
+          
+            if item['id'] is None:
+                dbg('Item had an id of None, continuing')
+                continue
 
             if first:
                 cache['last_transaction_id'] = item['id']
@@ -68,7 +72,7 @@ def generate_email_body(line_items):
                 first = False
 
             if item['id'] == last_transaction_id:
-                dbg("Item matched last transaction ID. Breaking.")
+                dbg("Item matched last transaction ID with ID %s. Breaking." % item['id'])
                 break
 
             email_body.write("[%s] %s %s\n" % (
@@ -121,10 +125,13 @@ def main():
     # This ugly bit of navigation gets us the list of the transactions that
     # have occured in this statement.
     statement_dict = response.get_statements()[0].as_dict()
+
     try:
         line_items = statement_dict['STMTRS']['BANKTRANLIST']
     except KeyError:
         line_items = statement_dict['CCSTMTRS']['BANKTRANLIST']
+
+    line_items = sorted(line_items, key=lambda v: v.asDict().get('DTPOSTED'), reverse=True)
 
     email_body = generate_email_body(line_items)
 
